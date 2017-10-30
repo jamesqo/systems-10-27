@@ -9,9 +9,16 @@ int getrand() {
   int random_fd = open("/dev/random", O_RDONLY);
   if (random_fd == -1) {
     printf("%s\n", strerror(errno));
+    return -1;
   }
+
   int ret;
   int num_read = read(random_fd, &ret, sizeof(ret));
+  if (num_read == -1) {
+      printf("%s\n", strerror(errno));
+      return -1;
+  }
+
   close(random_fd);
   return ret;
 }

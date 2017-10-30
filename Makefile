@@ -1,9 +1,12 @@
-all: main.c
-	gcc -o main main.c
+all: main.o
+	gcc -o main main.o
+
+main.o: main.c
+	gcc -c main.c
 
 clean:
-	rm *.o
-	rm *~
+	rm -f *.o
+	rm -f *~
 
 run: all
 	./main
